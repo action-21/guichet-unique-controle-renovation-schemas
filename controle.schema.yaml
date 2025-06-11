@@ -1,0 +1,96 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Contrôle des travaux de rénovation
+description: Schéma descriptif d'un contrôle des travaux de rénovation énergétique
+type: object
+properties:
+  id:
+    title: Identifiant
+    description: |
+      Identifiant unique du contrôle au format UUID. Cet identifiant peut être utilisé par les services de l'Etat dans le cadre d'opérations de contrôle complémentaires.
+    type: string
+    format: uuid
+  remplace:
+    title: Identifiant du contrôle remplacé
+    type: [string, "null"]
+    default: null
+  date_publication:
+    title: Date de publication
+    type: string
+    format: date
+  rnb_id:
+    title: Identifiant du bâtiment du Référentiel National des Bâtiments
+    type: string
+  travaux:
+    title: Nature des travaux
+    type: string
+  adresse:
+    title: Adresse du bâtiment
+    description: |
+      Adresse au format [Base Adresse Nationale (BAN)](https://doc.adresse.data.gouv.fr/)
+    type: object
+    properties:
+      id:
+        title: Identifiant de l'adresse dans la BAN
+        type: [string, "null"]
+        default: null
+      numero:
+        title: Numéro de la voie
+        type: string
+      nom_voie:
+        title: Nom de la voie
+        type: string
+      code_postal:
+        title: Code postal
+        type: string
+      code_commune:
+        title: Code INSEE
+        type: string
+      nom_commune:
+        title: Nom de la commune
+        type: string
+    required:
+      - id
+      - numero
+      - nom_voie
+      - code_postal
+      - code_commune
+      - nom_commune
+  organisme_controle:
+    title: Organisme de contrôle
+    type: object
+    properties:
+      raison_sociale:
+        title: Raison sociale de l'organisme de contrôle
+        type: string
+      siren:
+        title: SIREN de l'organisme de contrôle
+        type: string
+    required:
+      - raison_sociale
+      - siren
+  non_conformites:
+    title: Liste des non-conformités
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          title: Type de non-conformité
+          type: string
+          enum: [majeur, mineur]
+        nature:
+          title: Nature de la non-conformité
+          type: string
+          enum: [quantite, performance, regles_art, securite_occupants, administratif]
+      required:
+        - type
+        - nature
+required:
+  - id
+  - remplace
+  - date_publication
+  - rnb_id
+  - travaux
+  - adresse
+  - organisme_controle
+  - non_conformites
