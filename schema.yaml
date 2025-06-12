@@ -42,7 +42,7 @@ properties:
       code_postal:
         title: Code postal
         type: string
-      code_commune:
+      code_insee:
         title: Code INSEE
         type: string
       nom_commune:
@@ -53,7 +53,7 @@ properties:
       - numero
       - nom_voie
       - code_postal
-      - code_commune
+      - code_insee
       - nom_commune
   organisme_controle:
     title: Organisme de contrôle
