@@ -9,6 +9,11 @@ properties:
       Identifiant unique du contrôle au format UUID. Cet identifiant peut être utilisé par les services de l'Etat dans le cadre d'opérations de contrôle complémentaires.
     type: string
     format: uuid
+  reference:
+    titre: Référence externe
+    description: Référence externe du contrôle, utilisée pour lier le contrôle à un système d'information externe.
+    type: [string, "null"]
+    default: null
   remplace:
     title: Identifiant du contrôle remplacé
     type: [string, "null"]
@@ -87,6 +92,7 @@ properties:
         - nature
 required:
   - id
+  - reference
   - remplace
   - date_publication
   - rnb_id
